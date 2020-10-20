@@ -29,7 +29,7 @@ router.post("/:articleId", (request, response) => {
         .then(article => {
             SavedArticles.find()
                 .then(updatedArticles => {
-                    response.status(201).json({ updatedList: updatedArticles })
+                    response.status(201).json({ user_id: userId, article_id: articleId, updatedList: updatedArticles })
                 })
                 .catch(error => {
                     response.get(500).json({ error: error.message })
