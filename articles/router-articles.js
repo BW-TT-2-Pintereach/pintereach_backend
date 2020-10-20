@@ -28,7 +28,10 @@ router.put("/:id", (request, response) => {
     Articles.update(id, request.body)
         .then(changes => {
             if(changes) {
-                response.status(200).json({ id: id, changes: request.body })
+                Articles.find()
+                    .then(updatedArticles => {
+                        response.status(200).json({ updatedList: updatedArticles })
+                    })
             } else {
                 response.status(400).json({ message: `User with id ${id} does not exist`});
             }

@@ -23,13 +23,17 @@ router.get("/:id", (request, response) => {
 })
 
 router.post("/:articleId", (request, response) => {
-    console.log(request.jwt.userId)
     const userId = request.jwt.userId;
     const articleId = request.params.articleId;
-    console.log(articleId, userId)
     SavedArticles.add(userId, articleId)
         .then(article => {
-            response.status(201).json({ data: article })
+            SavedArticles.find()
+                .then(updatedArticles => {
+                    response.status(201).json({ updatedList: updatedArticles })
+                })
+                .catch(error => {
+                    response.get(500).json({ error: error.message })
+                })
         })
         .catch(error => {
             response.status(500).json({ message: error.message })
@@ -41,7 +45,13 @@ router.delete("/:id", (request, response) => {
     SavedArticles.remove(id)
         .then(savedArticleToBeDel => {
             if (savedArticleToBeDel) {
-                response.json({ removed: id });
+                SavedArticles.find()
+                    .then(updatedArticles => {
+                        response.status(200).json({ updatedList: updatedArticles })
+                    })
+                    .catch(error => {
+                        response.status(500).json({ error: error.message })
+                    })
             } else {
                 response.status(404).json({ message: 'Could not find article' });
             }
