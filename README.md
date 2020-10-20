@@ -50,7 +50,7 @@ Returns the *article with corresponding id*
 
 ### PUT /articles/:id
 
-Returns the *id* and *changes*
+Returns the *updated list*
 
 All values in article object except id can be changed
 
@@ -80,7 +80,7 @@ Returns Saved Article with the corresponding id
 
 ### POST /:articleId
 
-Returns object with the *current user's id (user_id)* and *article_id*
+Returns object with the *current user's id (user_id)* *article_id, and updated list*
 
 | Name             | Requried | Type          | Unique?   | Description                                 |
 |------------------|----------|---------------|-----------|---------------------------------------------|
@@ -88,7 +88,7 @@ Returns object with the *current user's id (user_id)* and *article_id*
 
 ### DELETE /:id
 
-Returns the id of the deleted saved article
+Returns the updated list of saved articles
 
 | Name      | Requried | Type          | Unique?   | Description                                         |
 |-----------|----------|---------------|-----------|-----------------------------------------------------|
