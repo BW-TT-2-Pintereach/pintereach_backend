@@ -17,7 +17,7 @@ function findById(id) {
 }
 
 function findByUserId(user_id) {
-    return db("savedArticles").where({ user_id })
+    return db("savedArticles").where({ user_id }).join("articles", "articles.id", "=", "article_id")
 }
 
 function add(userId, articleId) {
