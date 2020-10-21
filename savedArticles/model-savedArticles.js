@@ -1,5 +1,6 @@
 module.exports = {
     find,
+    findById,
     findByUserId,
     add, 
     remove
@@ -9,6 +10,10 @@ const db = require("../database/config");
 
 function find() {
     return db("savedArticles")
+}
+
+function findById(id) {
+    return db("savedArticles").where({ id }).first();
 }
 
 function findByUserId(user_id) {
