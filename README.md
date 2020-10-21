@@ -72,14 +72,6 @@ Saved Articles Object:
 | user_id    | Integer | Id of the specific user who liked the article    |
 | article_id | Integer | Id of the article that was liked                 |
 
-### Get /:id
-
-Returns Saved Article with the corresponding id
-
-| Name      | Requried | Type          | Unique?   | Description                 |
-|-----------|----------|---------------|-----------|-----------------------------|
-| id        |    yes   | URL Parameter |   yes     | The Id of the saved article |
-
 ### POST /:articleId
 
 Returns object with the *current user's id (user_id)* *article_id, and updated list*
@@ -88,9 +80,9 @@ Returns object with the *current user's id (user_id)* *article_id, and updated l
 |------------------|----------|---------------|-----------|---------------------------------------------|
 | articleId        |    yes   | URL Parameter |   yes     | The id of the article that you want to save |
 
-### DELETE /:id
+### DELETE /:articleId
 
-Returns the updated list of saved articles
+Returns the updated list of saved articles for user
 
 | Name      | Requried | Type          | Unique?   | Description                                         |
 |-----------|----------|---------------|-----------|-----------------------------------------------------|

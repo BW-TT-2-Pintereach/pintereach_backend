@@ -2,23 +2,13 @@ const router = require("express").Router();
 const SavedArticles = require("./model-savedArticles")
 
 router.get("/", (request, response) => {
-    SavedArticles.find()
+    const userId = request.jwt.userId;
+    SavedArticles.findByUserId(userId)
         .then(savedArticles => {
             response.status(200).json({ data: savedArticles })
         })
         .catch(error => {
             response.status(400).json({ message: error.message })
-        })
-})
-
-router.get("/:id", (request, response) => {
-    const { id } = request.params;
-    SavedArticles.findById(id)
-        .then(article => {
-            response.status(200).json(article)
-        })
-        .catch(error => {
-            response.status(500).json({message: error.message})
         })
 })
 
@@ -40,12 +30,13 @@ router.post("/:articleId", (request, response) => {
         })
 })
 
-router.delete("/:id", (request, response) => {
-    const { id } = request.params;
-    SavedArticles.remove(id)
+router.delete("/:articleId", (request, response) => {
+    const userId = request.jwt.userId;
+    const articleId = request.params.articleId;
+    SavedArticles.remove(userId, articleId)
         .then(savedArticleToBeDel => {
             if (savedArticleToBeDel) {
-                SavedArticles.find()
+                SavedArticles.findByUserId(userId)
                     .then(updatedArticles => {
                         response.status(200).json({ updatedList: updatedArticles })
                     })
@@ -57,6 +48,7 @@ router.delete("/:id", (request, response) => {
             }
         })
         .catch(error => {
+            console.log(error)
             response.status(500).json({ message: 'Failed to delete' });
         });
 })
