@@ -4,6 +4,7 @@ const helmet = require('helmet');
 
 //Routers
 const ArticleRouter = require("../articles/router-articles");
+const EditArticleRouter = require("../articles/auth-router-articles");
 const UserRouter = require ("../users/router-auth");
 const SavedArticleRouter = require("../savedArticles/router-savedArticles");
 
@@ -21,6 +22,7 @@ server.use(cors());
 server.use(express.json());
 server.use(logger)
 server.use("/articles", logger, ArticleRouter);
+server.use("/edit_articles", logger, authenticate, EditArticleRouter)
 server.use("/users", logger, UserRouter);
 server.use("/saved_articles", logger, authenticate, SavedArticleRouter);
 
