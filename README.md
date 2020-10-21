@@ -48,7 +48,9 @@ Returns the *article with corresponding id*
 |-----------|----------|---------------|-----------|-----------------------|
 |    id     |    yes   | URL Parameter |   yes     | The Id of the article |
 
-### PUT /articles/:id
+### PUT /edit_articles/:id
+
+**Requires Authentication**
 
 Returns the *updated list*
 
