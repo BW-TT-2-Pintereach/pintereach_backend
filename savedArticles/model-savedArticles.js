@@ -1,6 +1,6 @@
 module.exports = {
     find,
-    findById,
+    findByUserId,
     add, 
     remove
 }
@@ -11,12 +11,11 @@ function find() {
     return db("savedArticles")
 }
 
-function findById(id) {
-    return db("savedArticles").where({ id }).first();
+function findByUserId(user_id) {
+    return db("savedArticles").where({ user_id })
 }
 
 function add(userId, articleId) {
-    console.log(userId, articleId)
     return db("savedArticles")
             .insert({user_id: userId, article_id: articleId})
             .then(ids => {
@@ -25,6 +24,6 @@ function add(userId, articleId) {
             })
 }
 
-function remove(id) {
-    return db("savedArticles").where({ id }).del();
+function remove(user_id, article_id) {
+    return db("savedArticles").where({ user_id, article_id }).del();
 }
