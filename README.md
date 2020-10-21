@@ -62,7 +62,7 @@ These endpoints require you to be logged in
 
 ### GET /
 
-Returns the Article Ids and the Id of the User, who saved it
+Returns the list of article objects saved by user
 
 Saved Articles Object:
 
