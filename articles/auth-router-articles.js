@@ -6,6 +6,7 @@ router.put("/:id", (request, response) => {
     const { id } = request.params;
     Articles.update(id, request.body)
         .then(changes => {
+            console.log(changes)
             if(changes) {
                 Articles.find()
                     .then(updatedArticles => {
