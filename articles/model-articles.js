@@ -15,5 +15,5 @@ function findById(id) {
 }
 
 function update(id, changes) {
-    return db("articles").where({id}).update(changes)
+    return db("articles").where({ id }).update(changes)
 }
